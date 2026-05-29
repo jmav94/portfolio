@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en';
+---
+
+<BaseLayout title="Teaching" description="Faculty member at TecNM Campus Nuevo Laredo since 2019 — teaching advanced programming and mentoring engineering students." lang={lang}>
+  <section class="container-narrow">
+    <header class="page-head">
+      <span class="eyebrow">Teaching</span>
+      <h1>I've been teaching since 2019.</h1>
+      <p class="lead">It started as an evening commitment at the TecNM campus where I studied. It has become one of the things I most respect about my own work — and probably the part that has made me a better engineer.</p>
+    </header>
+
+    <section class="teach-section">
+      <h2>What I teach</h2>
+      <p>Advanced programming at the undergraduate level in Computer Systems Engineering at <strong>TecNM Campus Nuevo Laredo</strong>. The courses cover the territory where students transition from "learning syntax" to "designing systems":</p>
+      <ul>
+        <li>Architecture patterns and trade-offs</li>
+        <li>Data structures and algorithmic thinking applied to real problems</li>
+        <li>Software engineering practices: version control, code review, testing as a habit</li>
+        <li>Reading and writing code that other humans will inherit</li>
+      </ul>
+    </section>
+
+    <section class="teach-section">
+      <h2>Mentorship</h2>
+      <p>Beyond the classroom, I advise students on their professional residency projects — the capstone where they build something real for a partner organization. This is where students first encounter the full lifecycle: requirements ambiguity, stakeholder management, scope creep, and the unique satisfaction of seeing their code used by people who aren't grading it.</p>
+      <p>I keep my office door open (literally and over Slack) for graduates and students who want a second pair of eyes on a problem — career decisions, technical reviews, post-mortems on first jobs.</p>
+    </section>
+
+    <section class="teach-section">
+      <h2>Why I keep doing it</h2>
+      <p>Teaching forces me to be honest. You can write code that works without fully understanding why. You cannot teach code that works without explaining why. Every semester I rediscover gaps in my own understanding because a student asked the question I never had to answer.</p>
+      <p>It also reminds me that the most important thing I can pass on isn't a technique — it's a posture toward the craft. <em>Be careful. Be curious. Be the kind of engineer the next person inherits work from with relief, not dread.</em></p>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 { margin-top: 1rem; max-width: 22ch; }
+  .page-head .lead { font-size: 1.1rem; color: var(--ink-2); max-width: 38rem; margin-top: 1rem; }
+
+  .teach-section { margin-bottom: 2.5rem; }
+  .teach-section h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 1rem;
+  }
+  .teach-section p { color: var(--body); line-height: 1.65; }
+  .teach-section ul { padding-left: 1.25rem; }
+  .teach-section li { margin-bottom: 0.35rem; }
+  .teach-section li::marker { color: var(--accent); }
+</style>

@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en';
+const resumeHref = '/cv/cv-en.pdf';
+---
+
+<BaseLayout title="Work" description="Roles, responsibilities and concrete achievements across 10+ years in IT." lang={lang}>
+  <section class="work container-narrow">
+    <header class="page-head">
+      <span class="eyebrow">Work</span>
+      <h1>Ten years. Three places. One thread.</h1>
+      <p class="lead">The thread is the same wherever I go: design systems that don't break, operate them so they keep not breaking, and bring the next person up to speed.</p>
+      <div class="head-actions">
+        <a href={resumeHref} class="btn btn--accent" download>Download résumé (PDF) ↓</a>
+      </div>
+    </header>
+
+    <article class="role">
+      <div class="role-head">
+        <div>
+          <h2 class="role-title">Senior DevOps Engineer & AWS Solutions Architect</h2>
+          <div class="role-company">RAJO Transportes <span class="dot">·</span> Cross-border logistics</div>
+        </div>
+        <div class="role-when">Jan 2025 — Present</div>
+      </div>
+      <p class="role-lead">End-to-end ownership of the AWS architecture and full lifecycle of a fleet of 6+ enterprise applications supporting a cross-border trucking company (150 employees, 370 tractor-trucks, 500 trailers, 24/7 operation).</p>
+      <ul class="role-achievements">
+        <li><span class="lead-label">Cost</span> Multiple environments with budgets <span class="num">$350</span>–<span class="num">$3,400/mo</span>; achieved <span class="num">50–75%</span> reduction via right-sizing, Fargate optimization and storage lifecycle policies.</li>
+        <li><span class="lead-label">Reliability</span> Multi-repo CI/CD with zero-downtime deployments and automated rollback. Designed offline-first sync for mission-critical field operations.</li>
+        <li><span class="lead-label">Security</span> Least-privilege IAM, end-to-end encryption, centralized SSL/TLS multi-domain, per-environment CORS. Migrated apps off direct prod-DB access (<span class="num">28K+</span> records protected).</li>
+        <li><span class="lead-label">Automation</span> Built a recurring Well-Architected audit system (cost, security, reliability, DB, hygiene) executed by AI agents (Claude Code).</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <div>
+          <h2 class="role-title">Solutions Architect & DevOps Lead</h2>
+          <div class="role-company">Wakecode <span class="dot">·</span> 5+ clients across multiple industries</div>
+        </div>
+        <div class="role-when">2018 — 2025</div>
+      </div>
+      <p class="role-lead">Designed, operated and maintained AWS infrastructure and SaaS products for a portfolio of <span class="num">5+ clients</span> across hospitality POS, e-commerce, logistics, real estate, fitness and restaurants.</p>
+      <ul class="role-achievements">
+        <li><span class="lead-label">ECS migration</span> Migrated 3 production microservices (Java/Spring Boot) and 4 batch processes from legacy VPS to ECS Fargate with blue-green zero-downtime deployments.</li>
+        <li><span class="lead-label">Cost</span> <span class="num">~30%</span> reduction (<span class="num">~$794/mo</span>) via compute right-sizing, RDS IOPS tuning, ECR/CloudWatch lifecycle policies.</li>
+        <li><span class="lead-label">DB performance</span> Resolved deadlock on a <span class="num">4.2M+ row</span> table (full-scan <span class="num">4.2M → 34 rows</span>); <span class="num">85%</span> reduction in connection leaks (<span class="num">137/h → 21/h</span>).</li>
+        <li><span class="lead-label">Replication</span> Designed AWS DMS pipeline with <span class="num">22 tables</span> in daily CDC for analytics.</li>
+        <li><span class="lead-label">Observability</span> <span class="num">15+</span> CloudWatch alarms with category-based runbooks; resolved a <span class="num">7h</span> HikariPool exhaustion outage.</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <div>
+          <h2 class="role-title">Faculty Member</h2>
+          <div class="role-company">TecNM Campus Nuevo Laredo <span class="dot">·</span> Computer Systems Engineering</div>
+        </div>
+        <div class="role-when">2019 — Present</div>
+      </div>
+      <p class="role-lead">Teach advanced programming courses at the undergraduate level. Mentor students on professional residency projects and software development.</p>
+    </article>
+
+    <section class="extras">
+      <div class="extra-card">
+        <h3>Certifications</h3>
+        <p><strong>AWS Certified Solutions Architect — Associate (SAA-C03)</strong> <span class="extra-status">in active preparation, exam targeted 2026</span></p>
+      </div>
+      <div class="extra-card">
+        <h3>Education</h3>
+        <p><strong>B.Sc. Computer Systems Engineering</strong> · TecNM Campus Nuevo Laredo · 2013–2018<br /><em>Honorable mention, national innovation competition.</em></p>
+        <p><strong>IT Technician</strong> · CBTIS #137 · 2010–2013</p>
+      </div>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 { margin-top: 1rem; max-width: 18ch; }
+  .page-head .lead { font-size: 1.1rem; color: var(--ink-2); max-width: 38rem; margin-top: 1rem; }
+  .head-actions { margin-top: 1.5rem; }
+
+  .role { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--rule); }
+  .role:last-of-type { border-bottom: 0; }
+
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+  .role-title { font-size: 1.3rem; line-height: 1.2; }
+  .role-company { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink-2); margin-top: 0.25rem; }
+  .role-company .dot { color: var(--accent); margin: 0 0.4rem; }
+  .role-when {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .role-lead { color: var(--ink-2); margin-bottom: 1.25rem; line-height: 1.55; }
+
+  .role-achievements { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .role-achievements li {
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .role-achievements li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 8px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+  .lead-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    margin-right: 0.4rem;
+  }
+
+  .extras {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--rule);
+  }
+  .extra-card h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .extra-status {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 700px) {
+    .role-head { flex-direction: column; gap: 0.5rem; }
+    .extras { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'es';
+---
+
+<BaseLayout title="Docencia" description="Docente en TecNM Campus Nuevo Laredo desde 2019 — impartiendo programación avanzada y mentor de estudiantes de ingeniería." lang={lang}>
+  <section class="container-narrow">
+    <header class="page-head">
+      <span class="eyebrow">Docencia</span>
+      <h1>Llevo enseñando desde 2019.</h1>
+      <p class="lead">Empezó como un compromiso vespertino en el TecNM donde estudié. Se ha vuelto una de las cosas que más respeto de mi propio trabajo — y probablemente la parte que me ha hecho mejor ingeniero.</p>
+    </header>
+
+    <section class="teach-section">
+      <h2>Lo que enseño</h2>
+      <p>Programación avanzada a nivel licenciatura en Ingeniería en Sistemas Computacionales en <strong>TecNM Campus Nuevo Laredo</strong>. Los cursos cubren el territorio donde los estudiantes transitan de "aprender sintaxis" a "diseñar sistemas":</p>
+      <ul>
+        <li>Patrones de arquitectura y trade-offs</li>
+        <li>Estructuras de datos y pensamiento algorítmico aplicado a problemas reales</li>
+        <li>Prácticas de ingeniería de software: control de versiones, code review, testing como hábito</li>
+        <li>Leer y escribir código que otros humanos van a heredar</li>
+      </ul>
+    </section>
+
+    <section class="teach-section">
+      <h2>Mentoría</h2>
+      <p>Más allá del aula, asesoro a estudiantes en sus proyectos de residencia profesional — la culminación donde construyen algo real para una organización aliada. Aquí es donde los estudiantes encuentran por primera vez el ciclo de vida completo: ambigüedad de requisitos, manejo de stakeholders, scope creep, y la satisfacción única de ver su código usado por personas que no los están calificando.</p>
+      <p>Mantengo mi puerta abierta (literalmente y sobre Slack) para egresados y estudiantes que quieren un segundo par de ojos sobre un problema — decisiones de carrera, revisiones técnicas, post-mortems de primeros trabajos.</p>
+    </section>
+
+    <section class="teach-section">
+      <h2>Por qué lo sigo haciendo</h2>
+      <p>Enseñar te obliga a ser honesto. Puedes escribir código que funciona sin entender del todo por qué. No puedes enseñar código que funciona sin explicar por qué. Cada semestre redescubro huecos en mi propio entendimiento porque un estudiante hizo la pregunta que yo nunca tuve que responder.</p>
+      <p>También me recuerda que lo más importante que puedo transmitir no es una técnica — es una postura hacia el oficio. <em>Sé cuidadoso. Sé curioso. Sé el tipo de ingeniero del que la siguiente persona hereda trabajo con alivio, no con miedo.</em></p>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 { margin-top: 1rem; max-width: 22ch; }
+  .page-head .lead { font-size: 1.1rem; color: var(--ink-2); max-width: 38rem; margin-top: 1rem; }
+
+  .teach-section { margin-bottom: 2.5rem; }
+  .teach-section h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 1rem;
+  }
+  .teach-section p { color: var(--body); line-height: 1.65; }
+  .teach-section ul { padding-left: 1.25rem; }
+  .teach-section li { margin-bottom: 0.35rem; }
+  .teach-section li::marker { color: var(--accent); }
+</style>

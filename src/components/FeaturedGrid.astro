@@ -1,0 +1,103 @@
+---
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+
+interface CardItem {
+  href: string;
+  meta: string;
+  title: string;
+  excerpt: string;
+}
+
+interface Props {
+  lang: Lang;
+  eyebrow: string;
+  lead: string;
+  industries?: string;
+  seeAllHref: string;
+  items: CardItem[];
+}
+
+const { lang, eyebrow, lead, industries, seeAllHref, items } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="featured-section">
+  <div class="container">
+    <header class="block-head">
+      <span class="eyebrow">{eyebrow}</span>
+      {industries && <div class="block-industries">{industries}</div>}
+      <p class="block-lead">{lead}</p>
+    </header>
+
+    <div class="featured-grid">
+      {items.map((item) => (
+        <a href={item.href} class="card featured-card">
+          <div class="card-meta">{item.meta}</div>
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-excerpt">{item.excerpt}</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+
+    <a href={seeAllHref} class="see-all">{t('home.see_all')} →</a>
+  </div>
+</section>
+
+<style>
+  .featured-section { padding: 4rem 0; border-top: 1px solid var(--rule); }
+  .block-head { margin-bottom: 2rem; max-width: 38rem; }
+  .block-industries {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.01em;
+  }
+  .block-lead { color: var(--ink-2); margin: 0.75rem 0 0; font-size: 1rem; }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .featured-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 2.5rem;
+    position: relative;
+    min-height: 200px;
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--accent);
+    transition: transform 0.15s ease;
+  }
+
+  .featured-card:hover .card-arrow {
+    transform: translateX(4px);
+  }
+
+  .see-all {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1.5px solid var(--rule-2);
+  }
+  .see-all:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 800px) {
+    .featured-grid { grid-template-columns: 1fr; }
+  }
+</style>

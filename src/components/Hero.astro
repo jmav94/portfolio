@@ -1,0 +1,501 @@
+---
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <!-- ===== LEFT: TEXT COLUMN ===== -->
+    <div class="hero-text">
+      <span class="available-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        {t('home.available')}
+      </span>
+
+      <span class="eyebrow">{t('home.eyebrow')}</span>
+      <h1 class="hero-title">{t('home.hero_title')}</h1>
+      <p class="hero-lead">{t('home.hero_lead')}</p>
+
+      <div class="hero-actions">
+        <a href={localizedPath(lang, '/case-studies')} class="btn btn--accent">{t('home.cta_work')}</a>
+        <a href={resumeHref} class="btn btn--ghost" download>{t('home.cta_resume')} ↓</a>
+      </div>
+
+      <div class="hero-meta">
+        <span class="meta-item"><span class="dot"></span>{t('site.location')}</span>
+        <span class="meta-item">10+ {lang === 'es' ? 'años en TI' : 'years in IT'}</span>
+        <span class="meta-item">AWS · Senior DevOps</span>
+      </div>
+
+      <div class="open-to">
+        <span class="open-to-label">{t('home.open_to_label')}</span>
+        <ul class="open-to-list">
+          <li>{t('home.open_to_roles')}</li>
+          <li>{t('home.open_to_modality')}</li>
+          <li>{t('home.open_to_geo')}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT: SPECIMEN CARD ===== -->
+    <aside class="hero-aside">
+      <!-- Document header bar -->
+      <div class="spec-header">
+        <span class="spec-header-left">
+          <span class="spec-dot" aria-hidden="true"></span>
+          {t('home.spec_header')}
+        </span>
+        <span class="spec-header-right">{t('home.spec_rev')}</span>
+      </div>
+
+      <div class="hero-card">
+        <!-- Photo frame with dot-grid background -->
+        <div class="hero-card-frame">
+          <div class="frame-grid" aria-hidden="true"></div>
+          <img src="/photo.png" alt="Juan Manuel Ahumada Vázquez" class="hero-photo" />
+          <!-- Corner registration marks -->
+          <span class="reg-mark reg-tl" aria-hidden="true"></span>
+          <span class="reg-mark reg-tr" aria-hidden="true"></span>
+          <span class="reg-mark reg-bl" aria-hidden="true"></span>
+          <span class="reg-mark reg-br" aria-hidden="true"></span>
+        </div>
+
+        <!-- Identity block (specimen-style) -->
+        <div class="spec-identity">
+          <div class="spec-name">Juan Manuel <br /><strong>Ahumada Vázquez</strong></div>
+          <div class="spec-role">{t('home.spec_role')}</div>
+        </div>
+
+        <!-- Numbered stats grid -->
+        <div class="spec-stats">
+          <div class="spec-stat">
+            <span class="spec-stat-num">01</span>
+            <span class="spec-stat-value">{t('home.stat_cost_value')}</span>
+            <span class="spec-stat-label">{t('home.stat_cost_label')}</span>
+          </div>
+          <div class="spec-stat">
+            <span class="spec-stat-num">02</span>
+            <span class="spec-stat-value">{t('home.stat_apps_value')}</span>
+            <span class="spec-stat-label">{t('home.stat_apps_label')}</span>
+          </div>
+          <div class="spec-stat">
+            <span class="spec-stat-num">03</span>
+            <span class="spec-stat-value">{t('home.stat_ops_value')}</span>
+            <span class="spec-stat-label">{t('home.stat_ops_label')}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scale rule decoration (architectural drawing) -->
+      <div class="scale-rule" aria-hidden="true">
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-label">scale 1:1</span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+        <span class="rule-tick"></span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 3rem 0 4rem;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, var(--content-width));
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule-2), transparent);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  /* ============================================
+     TEXT COLUMN
+     ============================================ */
+  .available-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  :global([data-theme="dark"]) .available-pill {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 22%, transparent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 22%, transparent); }
+    50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 4%, transparent); }
+  }
+
+  .hero-title {
+    margin: 1rem 0 0.5rem;
+    max-width: 16ch;
+  }
+
+  .hero-annotation {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--accent);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 34rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Open-to block — small spec sheet feel for "what role I'm looking for" */
+  .open-to {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--rule);
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.25rem 1rem;
+    align-items: start;
+  }
+
+  .open-to-label {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .open-to-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .open-to-list li {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+  }
+
+  /* ============================================
+     ASIDE — SPECIMEN CARD
+     ============================================ */
+  .hero-aside {
+    position: relative;
+  }
+
+  /* Document header (looks like a code editor tab) */
+  .spec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 0.4rem 0.7rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-bottom: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .spec-header-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink-2);
+  }
+
+  .spec-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .spec-header-right { letter-spacing: 0.05em; }
+
+  .hero-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 1px 0 var(--rule),
+      0 16px 40px -20px color-mix(in srgb, var(--ink) 22%, transparent);
+  }
+
+  /* Photo frame */
+  .hero-card-frame {
+    position: relative;
+    aspect-ratio: 4 / 4.2;
+    background: var(--bg-soft);
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Architectural dot-grid background behind photo */
+  .frame-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, color-mix(in srgb, var(--ink) 15%, transparent) 0.5px, transparent 1px);
+    background-size: 14px 14px;
+    background-position: 7px 7px;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+  }
+
+  /* Corner registration marks — like a printer's marks or CAD drawing */
+  .reg-mark {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .reg-mark::before, .reg-mark::after {
+    content: "";
+    position: absolute;
+    background: var(--accent);
+  }
+  .reg-mark::before { width: 14px; height: 1.5px; top: 50%; left: 0; }
+  .reg-mark::after { width: 1.5px; height: 14px; left: 50%; top: 0; }
+  .reg-tl { top: 6px; left: 6px; }
+  .reg-tr { top: 6px; right: 6px; }
+  .reg-bl { bottom: 6px; left: 6px; }
+  .reg-br { bottom: 6px; right: 6px; }
+
+  /* Identity block — specimen style */
+  .spec-identity {
+    padding: 1rem 1.25rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .spec-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+  }
+
+  .spec-name strong {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .spec-role {
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  /* Numbered stats — like data sheet rows */
+  .spec-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .spec-stat {
+    padding: 0.95rem 0.75rem 1rem;
+    text-align: left;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    position: relative;
+  }
+  .spec-stat:last-child { border-right: 0; }
+
+  .spec-stat-num {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+  }
+
+  .spec-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+
+  .spec-stat-label {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    line-height: 1.3;
+    margin-top: 0.25rem;
+  }
+
+  /* Scale rule decoration — like an architectural drawing scale bar */
+  .scale-rule {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+  }
+
+  .rule-tick {
+    width: 1px;
+    height: 7px;
+    background: var(--rule-2);
+  }
+  .rule-tick:nth-child(4n) { height: 11px; background: var(--ink-2); }
+
+  .rule-label {
+    margin: 0 0.6rem;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-aside { max-width: 28rem; }
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 1.5rem 0 2.5rem; }
+    .hero-title { font-size: 2rem; max-width: 100%; }
+    .hero-lead { font-size: 1rem; }
+    .hero-meta { gap: 1rem; }
+    .spec-stat-value { font-size: 1.1rem; }
+    .spec-name { font-size: 1.05rem; }
+  }
+</style>

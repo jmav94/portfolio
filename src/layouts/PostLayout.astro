@@ -1,0 +1,89 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  summary: string;
+  publishedAt: string;
+  minRead: number;
+  tags: string[];
+}
+
+const { lang, title, summary, publishedAt, minRead, tags } = Astro.props;
+const t = useTranslations(lang);
+
+const dateFmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-MX' : 'en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+}).format(new Date(publishedAt));
+---
+
+<BaseLayout title={title} description={summary} lang={lang}>
+  <article class="post container-narrow">
+    <a href={localizedPath(lang, '/writing')} class="back-link">
+      ← {t('nav.writing')}
+    </a>
+
+    <header class="post-head">
+      <div class="post-meta">
+        <time datetime={publishedAt}>{dateFmt}</time>
+        <span class="dot">·</span>
+        <span>{minRead} {t('common.min_read')}</span>
+      </div>
+
+      <h1 class="post-title">{title}</h1>
+      <p class="post-summary">{summary}</p>
+
+      {tags.length > 0 && (
+        <div class="post-tags">
+          {tags.map((tag) => <span class="tag">#{tag}</span>)}
+        </div>
+      )}
+    </header>
+
+    <div class="post-body prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post { padding-top: 2rem; }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .post-head { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+
+  .post-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .post-meta .dot { margin: 0 0.5rem; color: var(--accent); }
+
+  .post-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .post-summary {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+</style>

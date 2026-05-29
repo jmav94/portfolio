@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import StackBlock from '../../components/StackBlock.astro';
+import FeaturedGrid from '../../components/FeaturedGrid.astro';
+import Closer from '../../components/Closer.astro';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+
+const cases = [
+  {
+    href: localizedPath(lang, '/case-studies/cross-border-logistics-aws'),
+    meta: 'Arquitectura · 2025',
+    title: 'Arquitectura AWS para una operación logística transfronteriza 24/7',
+    excerpt: 'Cómo diseño y opero un conjunto de 6+ aplicaciones empresariales para una empresa de transporte cruzando la frontera USA–México.',
+  },
+  {
+    href: localizedPath(lang, '/case-studies/hikari-pool-incident'),
+    meta: 'Incidente · Post-mortem',
+    title: 'Resolviendo un HikariPool exhaustion de 7 horas en producción',
+    excerpt: 'Anatomía de una caída: 23K errores, RCA, fix y la observabilidad que quedó como resultado.',
+  },
+  {
+    href: localizedPath(lang, '/case-studies/ai-agents-aws-audits'),
+    meta: 'Framework · Auditoría',
+    title: 'Framework de auditoría recurrente para infraestructura AWS',
+    excerpt: 'Sistema de revisión continua que cubre costos, seguridad, confiabilidad, base de datos e higiene, con ejecución estructurada y reporte basado en evidencia.',
+  },
+];
+
+const posts = [
+  {
+    href: localizedPath(lang, '/writing/4m-row-deadlock-lessons'),
+    meta: 'Bases de datos · 6 min',
+    title: 'Cuando indexar no basta: el fix de un deadlock de 4.2M filas',
+    excerpt: 'Un índice composite que redujo un full-scan de 4.2M a 34 filas, y la reescritura de query que hizo el índice utilizable.',
+  },
+  {
+    href: localizedPath(lang, '/writing/offline-first-field-ops'),
+    meta: 'Arquitectura · 8 min',
+    title: 'Sync offline-first para operaciones de campo bajo conectividad intermitente',
+    excerpt: 'Arquitectura y decisiones de diseño para una app de campo que tiene que mantenerse funcional en condiciones de conectividad completa, baja señal y offline total.',
+  },
+];
+---
+
+<BaseLayout title="Arquitecto de Soluciones AWS y Senior DevOps Engineer" lang={lang}>
+  <Hero lang={lang} />
+
+  <FeaturedGrid
+    lang={lang}
+    eyebrow={t('home.section_case_studies')}
+    industries={t('home.section_case_studies_industries')}
+    lead={t('home.section_case_studies_lead')}
+    seeAllHref={localizedPath(lang, '/case-studies')}
+    items={cases}
+  />
+
+  <StackBlock lang={lang} />
+
+  <FeaturedGrid
+    lang={lang}
+    eyebrow={t('home.section_writing')}
+    lead={t('home.section_writing_lead')}
+    seeAllHref={localizedPath(lang, '/writing')}
+    items={posts}
+  />
+
+  <Closer lang={lang} />
+</BaseLayout>

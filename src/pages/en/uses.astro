@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en';
+---
+
+<BaseLayout title="Uses" description="Hardware, editor, dotfiles and tools I use day-to-day." lang={lang}>
+  <section class="container-narrow">
+    <header class="page-head">
+      <span class="eyebrow">Uses</span>
+      <h1>What I use day-to-day.</h1>
+      <p class="lead">The setup I default to for cloud architecture, DevOps and writing. Not a manifesto — just what works for me.</p>
+    </header>
+
+    <div class="uses-grid">
+      <section class="uses-block">
+        <h2>Hardware</h2>
+        <ul>
+          <li><strong>MacBook Pro</strong> · Apple Silicon — primary daily driver</li>
+          <li><strong>External monitor</strong> — 4K, for the second pair of eyes</li>
+          <li><strong>Mechanical keyboard</strong> — tactile switches</li>
+        </ul>
+      </section>
+
+      <section class="uses-block">
+        <h2>Editor & terminal</h2>
+        <ul>
+          <li><strong>Claude Code</strong> — AI-assisted engineering harness for the heavy lifting</li>
+          <li><strong>VS Code</strong> — for visual reviews and quick edits</li>
+          <li><strong>iTerm2 + zsh</strong> with custom prompt and history-driven completion</li>
+          <li><strong>tmux</strong> for sessions across multiple environments</li>
+        </ul>
+      </section>
+
+      <section class="uses-block">
+        <h2>Cloud & infra tooling</h2>
+        <ul>
+          <li><strong>AWS CLI</strong> — preferred over the console for anything I do twice</li>
+          <li><strong>Terraform</strong>, <strong>CloudFormation</strong>, <strong>CDK</strong> — depending on the project's history</li>
+          <li><strong>Docker Desktop</strong> for local containers and DB instances</li>
+          <li><strong>k9s</strong> for quick Kubernetes triage when needed</li>
+        </ul>
+      </section>
+
+      <section class="uses-block">
+        <h2>Observability</h2>
+        <ul>
+          <li><strong>CloudWatch</strong> — first stop for AWS-native telemetry</li>
+          <li><strong>Datadog</strong>, <strong>Grafana</strong> — when the stack lives across clouds or data sources</li>
+          <li><strong>Sentry</strong> for app-level error tracking</li>
+        </ul>
+      </section>
+
+      <section class="uses-block">
+        <h2>Writing & PM</h2>
+        <ul>
+          <li><strong>Markdown everywhere</strong> — Obsidian for notes, plain MD in repos for docs</li>
+          <li><strong>Linear</strong> for issues and roadmap</li>
+          <li><strong>Notion</strong> for collaborative docs with non-engineers</li>
+          <li><strong>Excalidraw</strong> + <strong>Mermaid</strong> for architecture diagrams</li>
+        </ul>
+      </section>
+
+      <section class="uses-block">
+        <h2>Habits worth more than tools</h2>
+        <ul>
+          <li>Take notes during incidents — it's much easier to remember at hour 2 than at hour 7</li>
+          <li>Read post-mortems weekly, from other teams and other companies</li>
+          <li>Always run a smoke test in staging before pushing to prod</li>
+          <li>Write the runbook entry for any alarm I add, in the alarm description</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 { margin-top: 1rem; }
+  .page-head .lead { font-size: 1.1rem; color: var(--ink-2); max-width: 38rem; margin-top: 1rem; }
+
+  .uses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 2rem;
+  }
+
+  .uses-block h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule-2);
+    margin-bottom: 0.75rem;
+  }
+
+  .uses-block ul { list-style: none; padding: 0; margin: 0; }
+  .uses-block li {
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.55;
+  }
+  .uses-block li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    .uses-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import StackBlock from '../../components/StackBlock.astro';
+import FeaturedGrid from '../../components/FeaturedGrid.astro';
+import Closer from '../../components/Closer.astro';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const cases = [
+  {
+    href: localizedPath(lang, '/case-studies/cross-border-logistics-aws'),
+    meta: 'Architecture · 2025',
+    title: 'Architecting AWS for a 24/7 cross-border logistics operation',
+    excerpt: 'How I design and operate a fleet of 6+ enterprise apps for a trucking company moving across the US–Mexico border.',
+  },
+  {
+    href: localizedPath(lang, '/case-studies/hikari-pool-incident'),
+    meta: 'Incident · Post-mortem',
+    title: 'Resolving a 7-hour HikariPool exhaustion in production',
+    excerpt: 'Anatomy of an outage: 23K errors, RCA, fix and the observability that came out of it.',
+  },
+  {
+    href: localizedPath(lang, '/case-studies/ai-agents-aws-audits'),
+    meta: 'Framework · Audit',
+    title: 'A recurring audit framework for AWS infrastructure',
+    excerpt: 'A continuous review system covering cost, security, reliability, database and hygiene, with structured execution and evidence-based reporting.',
+  },
+];
+
+const posts = [
+  {
+    href: localizedPath(lang, '/writing/4m-row-deadlock-lessons'),
+    meta: 'Databases · 6 min read',
+    title: 'When indexing isn\'t enough: a 4.2M-row deadlock fix',
+    excerpt: 'A composite index that reduced a full-scan from 4.2M to 34 rows, and the query rewrite that made the index usable.',
+  },
+  {
+    href: localizedPath(lang, '/writing/offline-first-field-ops'),
+    meta: 'Architecture · 8 min read',
+    title: 'Offline-first sync for field operations under intermittent connectivity',
+    excerpt: 'Architecture and design decisions for a field app that has to stay functional through full connectivity, low signal and complete offline periods.',
+  },
+];
+---
+
+<BaseLayout title="AWS Solutions Architect & Senior DevOps Engineer" lang={lang}>
+  <Hero lang={lang} />
+
+  <FeaturedGrid
+    lang={lang}
+    eyebrow={t('home.section_case_studies')}
+    industries={t('home.section_case_studies_industries')}
+    lead={t('home.section_case_studies_lead')}
+    seeAllHref={localizedPath(lang, '/case-studies')}
+    items={cases}
+  />
+
+  <StackBlock lang={lang} />
+
+  <FeaturedGrid
+    lang={lang}
+    eyebrow={t('home.section_writing')}
+    lead={t('home.section_writing_lead')}
+    seeAllHref={localizedPath(lang, '/writing')}
+    items={posts}
+  />
+
+  <Closer lang={lang} />
+</BaseLayout>

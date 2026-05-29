@@ -1,0 +1,27 @@
+---
+import PostLayout from '../../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('writing', ({ id, data }) => id.startsWith('es/') && !data.draft);
+  return all.map((post) => ({
+    params: { slug: post.id.replace(/^es\//, '') },
+    props: { entry: post },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const lang = 'es';
+---
+
+<PostLayout
+  lang={lang}
+  title={entry.data.title}
+  summary={entry.data.summary}
+  publishedAt={entry.data.publishedAt}
+  minRead={entry.data.minRead}
+  tags={entry.data.tags}
+>
+  <Content />
+</PostLayout>

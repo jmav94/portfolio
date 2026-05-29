@@ -1,0 +1,163 @@
+---
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
+---
+
+<section class="closer">
+  <div class="container">
+    <div class="closer-card">
+      <!-- Corner registration marks — echo of hero specimen card -->
+      <span class="reg-mark reg-tl" aria-hidden="true"></span>
+      <span class="reg-mark reg-tr" aria-hidden="true"></span>
+      <span class="reg-mark reg-bl" aria-hidden="true"></span>
+      <span class="reg-mark reg-br" aria-hidden="true"></span>
+
+      <span class="closer-eyebrow">— {t('home.closer_eyebrow')} —</span>
+      <h2 class="closer-title">{t('home.closer_title')}</h2>
+      <p class="closer-sub">{t('home.closer_sub')}</p>
+
+      <div class="closer-actions">
+        <a href={localizedPath(lang, '/contact')} class="btn btn--accent btn--large">
+          {t('home.closer_cta_primary')} →
+        </a>
+        <a href={resumeHref} class="closer-secondary" download>
+          {t('home.closer_cta_secondary')} ↓
+        </a>
+      </div>
+
+      <!-- Scale rule footprint at the bottom -->
+      <div class="closer-scale" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .closer {
+    padding: 5rem 0 3rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .closer-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 4rem 3rem 3rem;
+    text-align: center;
+    /* Dot-grid background, very subtle */
+    background-image:
+      radial-gradient(circle, color-mix(in srgb, var(--ink) 8%, transparent) 0.6px, transparent 1px);
+    background-size: 18px 18px;
+    background-position: 9px 9px;
+    overflow: hidden;
+  }
+
+  /* Corner registration marks */
+  .reg-mark {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+  }
+  .reg-mark::before, .reg-mark::after {
+    content: "";
+    position: absolute;
+    background: var(--accent);
+  }
+  .reg-mark::before { width: 18px; height: 1.5px; top: 50%; left: 0; }
+  .reg-mark::after { width: 1.5px; height: 18px; left: 50%; top: 0; }
+  .reg-tl { top: 14px; left: 14px; }
+  .reg-tr { top: 14px; right: 14px; }
+  .reg-bl { bottom: 14px; left: 14px; }
+  .reg-br { bottom: 14px; right: 14px; }
+
+  .closer-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .closer-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin: 0 auto 1.25rem;
+    color: var(--ink);
+  }
+
+  .closer-sub {
+    font-size: 1rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    max-width: 38rem;
+    margin: 0 auto 2.25rem;
+  }
+
+  .closer-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .btn--large {
+    font-size: 1rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+  }
+
+  .closer-secondary {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    border-bottom: 1px dotted var(--rule-2);
+    padding-bottom: 1px;
+  }
+  .closer-secondary:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Scale rule decoration at bottom */
+  .closer-scale {
+    height: 12px;
+    max-width: 200px;
+    margin: 0 auto;
+    background-image:
+      repeating-linear-gradient(to right,
+        var(--rule-2) 0, var(--rule-2) 1px,
+        transparent 1px, transparent 10px);
+    background-size: 100% 5px;
+    background-position: 0 50%;
+    background-repeat: repeat-x;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 640px) {
+    .closer { padding: 3rem 0 2rem; }
+    .closer-card { padding: 3rem 1.5rem 2rem; }
+    .closer-title { font-size: 1.5rem; }
+    .reg-mark { width: 12px; height: 12px; }
+    .reg-mark::before { width: 12px; }
+    .reg-mark::after { height: 12px; }
+  }
+</style>

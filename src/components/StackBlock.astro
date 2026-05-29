@@ -1,0 +1,100 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const stack = [
+  {
+    cat: lang === 'es' ? 'Cloud & Infra' : 'Cloud & Infra',
+    items: ['AWS', 'ECS / Fargate', 'RDS', 'S3', 'Lambda', 'CloudFront', 'Route 53', 'IAM', 'Terraform', 'CloudFormation', 'CDK'],
+    accents: ['AWS'],
+  },
+  {
+    cat: lang === 'es' ? 'Contenedores & CI/CD' : 'Containers & CI/CD',
+    items: ['Docker', 'GitHub Actions', 'blue-green', 'multi-repo'],
+    accents: [],
+  },
+  {
+    cat: lang === 'es' ? 'Lenguajes' : 'Languages',
+    items: ['TypeScript', 'Node.js', 'Python', 'Go', 'Bash', 'Java / Spring Boot'],
+    accents: [],
+  },
+  {
+    cat: lang === 'es' ? 'Datos' : 'Data',
+    items: ['PostgreSQL', 'pgvector', 'MySQL', 'DMS / CDC'],
+    accents: [],
+  },
+  {
+    cat: lang === 'es' ? 'Observabilidad' : 'Observability',
+    items: ['CloudWatch', 'Datadog', 'Grafana', 'Sentry'],
+    accents: [],
+  },
+  {
+    cat: lang === 'es' ? 'IA & Automation' : 'AI & Automation',
+    items: ['Claude Code', lang === 'es' ? 'agentes de IA' : 'AI agents', 'PM automation', 'code review', lang === 'es' ? 'auditorías' : 'audits'],
+    accents: ['Claude Code'],
+  },
+];
+---
+
+<section class="stack-section">
+  <div class="container">
+    <header class="block-head">
+      <span class="eyebrow">{t('home.section_stack')}</span>
+    </header>
+
+    <div class="stack-grid">
+      {stack.map((row) => (
+        <div class="stack-row">
+          <div class="stack-cat">{row.cat}</div>
+          <div class="stack-tags">
+            {row.items.map((item) => (
+              <span class={row.accents.includes(item) ? 'tag accent' : 'tag'}>{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-section { padding: 4rem 0; border-top: 1px solid var(--rule); }
+  .block-head { margin-bottom: 2rem; }
+
+  .stack-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .stack-row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  .stack-cat {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+  }
+
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+  @media (max-width: 700px) {
+    .stack-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>

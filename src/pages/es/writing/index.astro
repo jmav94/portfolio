@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { localizedPath } from '../../../i18n/utils';
+
+const lang = 'es';
+const all = await getCollection('writing', ({ id, data }) => id.startsWith('es/') && !data.draft);
+const sorted = all.sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime());
+
+const dateFmt = (s: string) => new Intl.DateTimeFormat('es-MX', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(s));
+---
+
+<BaseLayout title="Escritos" description="Notas del campo — incidentes, arquitectura, y lo que los agentes de IA le están haciendo a mi flujo de trabajo." lang={lang}>
+  <section class="container-narrow">
+    <header class="page-head">
+      <span class="eyebrow">Escritos</span>
+      <h1>Notas del campo.</h1>
+      <p class="lead">Incidentes, arquitectura, y lo que los agentes de IA le están haciendo a mi flujo de trabajo. <a href="/writing/rss.xml">RSS</a>.</p>
+    </header>
+
+    <ul class="post-list">
+      {sorted.map((post) => {
+        const slug = post.id.replace(/^es\//, '').replace(/\.md$/, '');
+        return (
+          <li>
+            <a href={localizedPath(lang, `/writing/${slug}`)} class="post-item">
+              <div class="post-item-meta">
+                <time datetime={post.data.publishedAt}>{dateFmt(post.data.publishedAt)}</time>
+                <span class="dot">·</span>
+                <span>{post.data.minRead} min de lectura</span>
+              </div>
+              <h2 class="post-item-title">{post.data.title}</h2>
+              <p class="post-item-summary">{post.data.summary}</p>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 { margin-top: 1rem; }
+  .page-head .lead { font-size: 1.1rem; color: var(--ink-2); max-width: 36rem; margin-top: 1rem; }
+  .page-head .lead a { color: var(--accent); text-decoration-color: var(--accent); }
+
+  .post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+
+  .post-item {
+    display: block;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: padding 0.15s ease;
+  }
+  .post-item:hover {
+    padding-left: 0.5rem;
+    color: inherit;
+  }
+  .post-item:hover .post-item-title { color: var(--accent); }
+
+  .post-item-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .post-item-meta .dot { margin: 0 0.4rem; color: var(--accent); }
+
+  .post-item-title {
+    font-size: 1.3rem;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+    transition: color 0.15s ease;
+  }
+
+  .post-item-summary { color: var(--ink-2); line-height: 1.55; margin: 0; }
+</style>

@@ -1,0 +1,350 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en';
+
+const principles = [
+  {
+    n: '01',
+    lead: 'Reliability over heroics.',
+    body: 'Systems that need constant intervention are systems that weren\'t well-designed from the start. I prefer investing time in design rather than firefighting later.',
+  },
+  {
+    n: '02',
+    lead: 'Cost discipline that doesn\'t slow people down.',
+    body: 'AWS bills grow fast if no one watches them. The solution is usually small, consistent fixes in the right place — not big rewrites.',
+  },
+  {
+    n: '03',
+    lead: 'Tools, not replacements.',
+    body: 'I use AI tools like Claude Code in my daily work for code review, audits, and spec generation. Agents help me handle repetitive tasks so I can focus on decisions that require judgment.',
+  },
+];
+
+const howIWork = [
+  {
+    title: 'Async-first by default',
+    body: 'I document important decisions in writing. The goal is that my team can understand the why of things without having to ask me.',
+  },
+  {
+    title: 'Meetings with clear purpose',
+    body: 'After each meeting I document what was decided and the next steps. It helps the team stay aligned without requiring more meetings.',
+  },
+  {
+    title: 'Direct, professional feedback',
+    body: 'I give technical feedback in writing with reasoning, not just opinions. I expect the same in return.',
+  },
+  {
+    title: 'Autonomy + clear constraints',
+    body: 'I work best with clear problems and defined constraints. I return with options, trade-offs and a recommendation so you can decide with information.',
+  },
+];
+---
+
+<BaseLayout title="About" description="AWS Solutions Architect & Senior DevOps Engineer based in Nuevo Laredo, Mexico." lang={lang}>
+  <section class="container-narrow about">
+    <header class="page-head">
+      <span class="eyebrow">About</span>
+      <h1>What I do, how I work, and what I bring to a team.</h1>
+    </header>
+
+    <!-- ============= INTRO (no photo) ============= -->
+    <div class="intro">
+      <p class="lead-text">
+        I'm a Computer Systems Engineer based in <strong>Nuevo Laredo, Tamaulipas</strong>, on the US–Mexico border. Ten years in IT, the last several focused on AWS cloud architecture and DevOps for businesses that need their systems to be reliable, every day, with no exceptions.
+      </p>
+      <p>
+        Today I lead the cloud architecture and full lifecycle of an enterprise multi-application platform in 24/7 production. Previously I designed and operated AWS infrastructure for clients across multiple industries — hospitality POS, e-commerce, logistics and real estate, among others.
+      </p>
+    </div>
+
+    <!-- ============= PULLQUOTE ============= -->
+    <div class="pullquote">
+      <span class="pullquote-rule" aria-hidden="true"></span>
+      <p>I deliver what I commit to. I expect the same.</p>
+    </div>
+
+    <!-- ============= PRINCIPLES ============= -->
+    <section class="block">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          What I care about
+        </span>
+        <span class="block-count">03 principles</span>
+      </header>
+
+      <ol class="principle-list">
+        {principles.map((p) => (
+          <li class="principle">
+            <span class="principle-num">{p.n}</span>
+            <div class="principle-body">
+              <h3 class="principle-lead">{p.lead}</h3>
+              <p>{p.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- ============= HOW I WORK ============= -->
+    <section class="block">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          How I work
+        </span>
+        <span class="block-count">04 signals</span>
+      </header>
+
+      <div class="how-grid">
+        {howIWork.map((h) => (
+          <div class="how-card">
+            <h3 class="how-title">{h.title}</h3>
+            <p class="how-body">{h.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ============= BEYOND THE WORK ============= -->
+    <section class="block beyond">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          Beyond the work
+        </span>
+      </header>
+
+      <p>
+        I've been teaching at <strong>TecNM Campus Nuevo Laredo</strong> since 2019, where I teach advanced programming and mentor students in their residency projects. Teaching keeps me honest about what I truly understand and where I only have muscle memory.
+      </p>
+      <p>
+        I'm naturally competitive: when I commit to something, I see it through. I apply the same approach to cloud infrastructure as I do to anything I care about — going beyond, finding opportunities along the way, executing what I propose.
+      </p>
+
+      <div class="closing">
+        <span class="closing-rule" aria-hidden="true"></span>
+        <p>If you've read this far and think we could work together, write me.</p>
+      </div>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .about { padding-top: 1rem; }
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 {
+    margin-top: 1rem;
+    max-width: 28ch;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  /* ============================================
+     INTRO (no photo, just lead)
+     ============================================ */
+  .intro {
+    margin-bottom: 3.5rem;
+    max-width: 38rem;
+  }
+  .lead-text {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .intro p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--body);
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* ============================================
+     PULLQUOTE
+     ============================================ */
+  .pullquote {
+    padding: 1rem 0 2.5rem;
+    margin: 0 auto 3.5rem;
+    max-width: 40rem;
+    text-align: center;
+  }
+  .pullquote-rule {
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .pullquote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* ============================================
+     BLOCK STRUCTURE
+     ============================================ */
+  .block { margin-bottom: 4rem; }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .block-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .eyebrow-mark {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .block-count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ============================================
+     PRINCIPLES
+     ============================================ */
+  .principle-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .principle {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+  }
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+  .principle-lead {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.005em;
+  }
+  .principle-body p {
+    margin: 0;
+    color: var(--body);
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+
+  /* ============================================
+     HOW I WORK
+     ============================================ */
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .how-card {
+    padding: 1.25rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    position: relative;
+  }
+  .how-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.4rem;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .how-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0.5rem 0 0.5rem;
+    letter-spacing: -0.005em;
+  }
+  .how-body {
+    margin: 0;
+    color: var(--body);
+    line-height: 1.6;
+    font-size: 0.92rem;
+  }
+
+  /* ============================================
+     BEYOND THE WORK
+     ============================================ */
+  .beyond p {
+    color: var(--body);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .beyond strong { color: var(--ink); font-weight: 600; }
+
+  .closing {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .closing-rule {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--rule-2);
+    margin-bottom: 1rem;
+  }
+  .closing p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 760px) {
+    .lead-text { font-size: 1.1rem; }
+    .principle { grid-template-columns: 40px 1fr; gap: 0.85rem; padding: 1rem 1.1rem; }
+    .how-grid { grid-template-columns: 1fr; }
+    .block-head { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  }
+</style>

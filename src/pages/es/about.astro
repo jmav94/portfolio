@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'es';
+
+const principles = [
+  {
+    n: '01',
+    lead: 'Confiabilidad sobre heroísmo.',
+    body: 'Los sistemas que requieren intervención constante son sistemas que no se diseñaron bien al inicio. Prefiero invertir tiempo en el diseño que en apagar incendios después.',
+  },
+  {
+    n: '02',
+    lead: 'Disciplina de costos que no frena a la gente.',
+    body: 'Las facturas AWS crecen rápido si nadie las cuida. La solución suele ser ajustes pequeños y consistentes en el lugar correcto, no rewrites grandes.',
+  },
+  {
+    n: '03',
+    lead: 'Herramientas, no reemplazos.',
+    body: 'Uso herramientas de IA como Claude Code en mi trabajo diario para code review, auditorías y generación de specs. Los agentes me ayudan con tareas repetitivas para que pueda enfocarme en decisiones que requieren juicio.',
+  },
+];
+
+const howIWork = [
+  {
+    title: 'Async-first por default',
+    body: 'Documento las decisiones importantes por escrito. El objetivo es que mi equipo pueda entender el porqué de las cosas sin tener que preguntarme.',
+  },
+  {
+    title: 'Juntas con propósito claro',
+    body: 'Después de cada junta documento lo que se decidió y los siguientes pasos. Ayuda a que el equipo se mantenga alineado sin requerir más juntas.',
+  },
+  {
+    title: 'Feedback directo y profesional',
+    body: 'Doy feedback técnico por escrito con razonamiento, no solo opiniones. Espero lo mismo de mi equipo.',
+  },
+  {
+    title: 'Autonomía + constraints claros',
+    body: 'Trabajo mejor con problemas claros y constraints definidos. Devuelvo opciones, trade-offs y una recomendación para que decidas con información.',
+  },
+];
+---
+
+<BaseLayout title="Acerca" description="Arquitecto AWS y Senior DevOps Engineer basado en Nuevo Laredo, México." lang={lang}>
+  <section class="container-narrow about">
+    <header class="page-head">
+      <span class="eyebrow">Acerca</span>
+      <h1>Qué hago, cómo trabajo, y qué aporto a un equipo.</h1>
+    </header>
+
+    <div class="intro">
+      <p class="lead-text">
+        Soy Ingeniero en Sistemas Computacionales basado en <strong>Nuevo Laredo, Tamaulipas</strong>, en la frontera USA–México. Diez años en TI, los últimos enfocado en arquitectura cloud AWS y DevOps para empresas que necesitan que sus sistemas sean confiables, todos los días, sin excepciones.
+      </p>
+      <p>
+        Hoy lidero la arquitectura cloud y el ciclo de vida completo de una plataforma multi-aplicación empresarial en producción 24/7. Antes diseñé y operé infraestructura AWS para clientes en varias industrias — POS hospitalario, e-commerce, logística y bienes raíces, entre otras.
+      </p>
+    </div>
+
+    <div class="pullquote">
+      <span class="pullquote-rule" aria-hidden="true"></span>
+      <p>Cumplo con lo que prometo. Espero lo mismo.</p>
+    </div>
+
+    <section class="block">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          Lo que me importa
+        </span>
+        <span class="block-count">03 principios</span>
+      </header>
+
+      <ol class="principle-list">
+        {principles.map((p) => (
+          <li class="principle">
+            <span class="principle-num">{p.n}</span>
+            <div class="principle-body">
+              <h3 class="principle-lead">{p.lead}</h3>
+              <p>{p.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="block">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          Cómo trabajo
+        </span>
+        <span class="block-count">04 señales</span>
+      </header>
+
+      <div class="how-grid">
+        {howIWork.map((h) => (
+          <div class="how-card">
+            <h3 class="how-title">{h.title}</h3>
+            <p class="how-body">{h.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="block beyond">
+      <header class="block-head">
+        <span class="block-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true">/</span>
+          Más allá del trabajo
+        </span>
+      </header>
+
+      <p>
+        Soy docente en <strong>TecNM Campus Nuevo Laredo</strong> desde 2019, donde imparto programación avanzada y mentor a estudiantes en sus proyectos de residencia. Enseñar me mantiene honesto sobre qué entiendo de verdad y dónde solo tengo memoria muscular.
+      </p>
+      <p>
+        Soy competitivo por naturaleza: cuando me comprometo con algo, lo veo hasta el final. Aplico el mismo approach a la infraestructura cloud que a cualquier proyecto que me importa — ir más allá, encontrar oportunidades sobre la marcha, ejecutar lo que propongo.
+      </p>
+
+      <div class="closing">
+        <span class="closing-rule" aria-hidden="true"></span>
+        <p>Si llegaste hasta aquí y crees que podemos trabajar juntos, escríbeme.</p>
+      </div>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .about { padding-top: 1rem; }
+  .page-head { margin-bottom: 3rem; }
+  .page-head h1 {
+    margin-top: 1rem;
+    max-width: 28ch;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .intro {
+    margin-bottom: 3.5rem;
+    max-width: 38rem;
+  }
+  .lead-text {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .intro p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--body);
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  .pullquote {
+    padding: 1rem 0 2.5rem;
+    margin: 0 auto 3.5rem;
+    max-width: 40rem;
+    text-align: center;
+  }
+  .pullquote-rule {
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .pullquote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .block { margin-bottom: 4rem; }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .block-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .eyebrow-mark {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .block-count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .principle-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .principle {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+  }
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+  .principle-lead {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.005em;
+  }
+  .principle-body p {
+    margin: 0;
+    color: var(--body);
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .how-card {
+    padding: 1.25rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    position: relative;
+  }
+  .how-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.4rem;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .how-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0.5rem 0 0.5rem;
+    letter-spacing: -0.005em;
+  }
+  .how-body {
+    margin: 0;
+    color: var(--body);
+    line-height: 1.6;
+    font-size: 0.92rem;
+  }
+
+  .beyond p {
+    color: var(--body);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .beyond strong { color: var(--ink); font-weight: 600; }
+
+  .closing {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .closing-rule {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--rule-2);
+    margin-bottom: 1rem;
+  }
+  .closing p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 760px) {
+    .lead-text { font-size: 1.1rem; }
+    .principle { grid-template-columns: 40px 1fr; gap: 0.85rem; padding: 1rem 1.1rem; }
+    .how-grid { grid-template-columns: 1fr; }
+    .block-head { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  }
+</style>

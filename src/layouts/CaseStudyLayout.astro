@@ -1,0 +1,149 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  summary: string;
+  role: string;
+  industry: string;
+  year: string;
+  stack: string[];
+  metrics?: { label: string; value: string }[];
+}
+
+const { lang, title, summary, role, industry, year, stack, metrics } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={title} description={summary} lang={lang}>
+  <article class="case-study container-narrow">
+    <a href={localizedPath(lang, '/case-studies')} class="back-link">
+      ← {t('nav.case_studies')}
+    </a>
+
+    <header class="case-head">
+      <div class="case-meta">
+        <span>{industry}</span>
+        <span class="dot">·</span>
+        <span>{year}</span>
+      </div>
+
+      <h1 class="case-title">{title}</h1>
+      <p class="case-summary">{summary}</p>
+
+      <div class="case-role">
+        <span class="case-role-label">{lang === 'es' ? 'Rol' : 'Role'}</span>
+        <span class="case-role-value">{role}</span>
+      </div>
+
+      {metrics && metrics.length > 0 && (
+        <div class="case-metrics">
+          {metrics.map((m) => (
+            <div class="metric">
+              <div class="metric-value">{m.value}</div>
+              <div class="metric-label">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="case-stack">
+        {stack.map((s) => <span class="tag">{s}</span>)}
+      </div>
+    </header>
+
+    <div class="case-body prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-study { padding-top: 2rem; }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .case-head { margin-bottom: 3rem; }
+
+  .case-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .case-meta .dot { margin: 0 0.5rem; color: var(--accent); }
+
+  .case-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .case-summary {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+
+  .case-role {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .case-role-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+  .case-role-value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .case-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .metric { display: flex; flex-direction: column; gap: 0.25rem; }
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .case-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+  .case-body { margin-top: 1rem; }
+</style>

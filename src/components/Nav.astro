@@ -15,9 +15,12 @@ const nav = [
   { key: 'nav.case_studies', path: '/case-studies' },
   { key: 'nav.writing', path: '/writing' },
   { key: 'nav.about', path: '/about' },
+  { key: 'nav.contact', path: '/contact' },
+] as const;
+
+const more = [
   { key: 'nav.teaching', path: '/teaching' },
   { key: 'nav.uses', path: '/uses' },
-  { key: 'nav.contact', path: '/contact' },
 ] as const;
 
 const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
@@ -35,6 +38,17 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
         {nav.map(({ key, path }) => (
           <li><a href={localizedPath(lang, path)}>{t(key as any)}</a></li>
         ))}
+        <li class="nav-more">
+          <button type="button" id="more-toggle" class="nav-more-toggle" aria-expanded="false" aria-haspopup="true">
+            {t('nav.more')}
+            <svg class="more-caret" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="nav-more-menu">
+            {more.map(({ key, path }) => (
+              <li><a href={localizedPath(lang, path)}>{t(key as any)}</a></li>
+            ))}
+          </ul>
+        </li>
       </ul>
     </nav>
 
@@ -69,9 +83,20 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     top: 0;
     z-index: 50;
     background: color-mix(in srgb, var(--bg) 92%, transparent);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Blur lives on a pseudo-element so .site-nav itself does NOT become the
+     containing block for the fixed mobile-menu overlay (backdrop-filter on the
+     element would trap position:fixed children inside the 64px bar). */
+  .site-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     backdrop-filter: saturate(180%) blur(12px);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--rule);
+    pointer-events: none;
   }
 
   .nav-inner {
@@ -135,6 +160,82 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
   }
 
   .nav-list a:hover { color: var(--accent); }
+
+  /* ===== "More" dropdown ===== */
+  .nav-more { position: relative; }
+
+  .nav-more-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+  .nav-more-toggle:hover { color: var(--accent); }
+  .more-caret { transition: transform 0.18s ease; margin-top: 1px; }
+
+  /* invisible bridge so the cursor can travel from button to menu without losing :hover */
+  .nav-more::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -0.5rem;
+    right: -0.5rem;
+    height: 0.7rem;
+  }
+
+  .nav-more-menu {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0;
+    min-width: 152px;
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--ink) 45%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 60;
+  }
+
+  .nav-more:hover .nav-more-menu,
+  .nav-more:focus-within .nav-more-menu,
+  .nav-more.open .nav-more-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-more:hover .more-caret,
+  .nav-more:focus-within .more-caret,
+  .nav-more.open .more-caret { transform: rotate(180deg); }
+
+  .nav-more-menu li { display: block; }
+  .nav-more-menu a {
+    display: block;
+    padding: 0.45rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .nav-more-menu a:hover { background: var(--bg-soft); color: var(--accent); }
 
   .nav-actions {
     display: flex;
@@ -233,6 +334,21 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     font-size: 1.25rem;
   }
 
+  /* In the full-screen mobile menu, flatten "More": hide the toggle and
+     let Teaching/Uses flow inline as regular items. */
+  body.menu-open .nav-more,
+  body.menu-open .nav-more-menu {
+    display: contents;
+    visibility: visible;
+    opacity: 1;
+  }
+  body.menu-open .nav-more-toggle,
+  body.menu-open .nav-more::after { display: none; }
+  body.menu-open .nav-more-menu a {
+    padding: 0;
+    color: var(--ink-2);
+  }
+
   body.menu-open .nav-actions {
     display: flex;
     position: fixed;
@@ -276,6 +392,30 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
         document.body.classList.toggle('menu-open');
         const expanded = document.body.classList.contains('menu-open');
         menuBtn.setAttribute('aria-expanded', String(expanded));
+      }
+
+      // "More" dropdown: toggle on its button, close when clicking anywhere else
+      const moreBtn = target.closest('#more-toggle');
+      const moreWrap = document.querySelector('.nav-more');
+      if (moreWrap) {
+        if (moreBtn) {
+          const open = moreWrap.classList.toggle('open');
+          moreBtn.setAttribute('aria-expanded', String(open));
+        } else if (!target.closest('.nav-more-menu')) {
+          moreWrap.classList.remove('open');
+          const btn = moreWrap.querySelector('#more-toggle');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const moreWrap = document.querySelector('.nav-more.open');
+      if (moreWrap) {
+        moreWrap.classList.remove('open');
+        const btn = moreWrap.querySelector('#more-toggle');
+        if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
       }
     });
   })();

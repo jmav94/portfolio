@@ -30,6 +30,29 @@ const alt = alternateLangPath(lang, Astro.url);
 const otherLang = lang === 'en' ? 'es' : 'en';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const altUrl = new URL(alt, Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Juan Manuel Ahumada Vázquez',
+  jobTitle: lang === 'es'
+    ? 'Arquitecto de Soluciones AWS / Senior DevOps Engineer'
+    : 'AWS Solutions Architect / Senior DevOps Engineer',
+  url: new URL('/en', Astro.site).toString(),
+  image: new URL('/photo.png', Astro.site).toString(),
+  email: 'mailto:juan.ahumada94@gmail.com',
+  sameAs: [
+    'https://github.com/jmav94',
+    'https://www.linkedin.com/in/jahumada94/',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nuevo Laredo',
+    addressRegion: 'Tamaulipas',
+    addressCountry: 'MX',
+  },
+  knowsAbout: ['AWS', 'Cloud architecture', 'DevOps', 'Site reliability engineering', 'Infrastructure as Code'],
+};
 ---
 
 <!DOCTYPE html>
@@ -57,14 +80,17 @@ const altUrl = new URL(alt, Astro.site);
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={finalDescription} />
 
-  <!-- Prevent FOUC for theme -->
+  <!-- Prevent FOUC for theme + flag JS so progressive-enhancement styles (diagram reveal) only apply when JS runs -->
   <script is:inline>
     (function () {
+      document.documentElement.classList.add('js');
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
     })();
   </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>

@@ -81,7 +81,7 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     padding: 0 var(--space-6);
     display: flex;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-4);
   }
 
   .brand {
@@ -120,7 +120,7 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 1.5rem;
+    gap: 1.1rem;
   }
 
   .nav-list a {
@@ -130,6 +130,7 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     color: var(--ink-2);
     text-decoration: none;
     letter-spacing: -0.005em;
+    white-space: nowrap;
     transition: color 0.15s ease;
   }
 
@@ -206,7 +207,7 @@ const resumeHref = lang === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf';
     background: var(--ink);
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     nav, .nav-actions { display: none; }
     .menu-toggle { display: flex; }
     .nav-inner { justify-content: space-between; }

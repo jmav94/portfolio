@@ -489,12 +489,14 @@ main {
 
 /* Scroll-in animation: fade + slight rise */
 @media (prefers-reduced-motion: no-preference) {
-  .diagram-wrap {
+  /* Only hide-then-reveal when JS is present to flip .is-visible.
+     Without JS, diagrams stay fully visible (no blank gaps for crawlers / no-JS). */
+  .js .diagram-wrap {
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .diagram-wrap.is-visible {
+  .js .diagram-wrap.is-visible {
     opacity: 1;
     transform: translateY(0);
   }

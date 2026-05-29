@@ -46,9 +46,9 @@ export const ui = {
     'home.section_case_studies': 'Selected case studies',
     'home.section_case_studies_industries': 'Cross-border logistics · Hospitality SaaS · Internal frameworks',
     'home.section_case_studies_lead': 'Three deep dives into the systems I\'ve designed. Each one structured the same way: context, architecture, what shipped, what I\'d do differently.',
-    'home.closer_eyebrow': 'Hiring?',
+    'home.closer_eyebrow': 'Hiring or need a hand?',
     'home.closer_title': 'Looking for a Senior AWS / DevOps Engineer?',
-    'home.closer_sub': 'Open to senior IC, tech lead, or solutions architect roles — remote-first, FT / contract / fractional. USA, LATAM or EU time zones.',
+    'home.closer_sub': 'Open to senior IC, tech lead, or solutions architect roles — remote-first, FT / contract / fractional. Also available for cloud architecture consulting and platform audits. USA, LATAM or EU time zones.',
     'home.closer_cta_primary': 'Get in touch',
     'home.closer_cta_secondary': 'Or download the résumé',
 
@@ -74,7 +74,7 @@ export const ui = {
     'home.section_stack': 'Stack I work with daily',
     'home.see_all': 'See all',
 
-    'footer.tagline': 'Built with Astro. Hosted on Vercel.',
+    'footer.tagline': 'Built with Astro. Hosted on Netlify.',
     'footer.last_updated': 'Last updated',
 
     'page.about.title': 'About',
@@ -129,9 +129,9 @@ export const ui = {
     'home.section_case_studies': 'Casos seleccionados',
     'home.section_case_studies_industries': 'Logística transfronteriza · SaaS hospitalario · Frameworks internos',
     'home.section_case_studies_lead': 'Tres casos detallados en los sistemas que he diseñado. Cada uno estructurado igual: contexto, arquitectura, qué entregamos, qué haría diferente.',
-    'home.closer_eyebrow': '¿Estás contratando?',
+    'home.closer_eyebrow': '¿Contratando o necesitas una mano?',
     'home.closer_title': '¿Buscas un Senior AWS / DevOps Engineer?',
-    'home.closer_sub': 'Abierto a roles de Senior IC, Tech Lead o Solutions Architect — remote-first, FT / contract / fractional. USA, LATAM o EU time zones.',
+    'home.closer_sub': 'Abierto a roles de Senior IC, Tech Lead o Solutions Architect — remote-first, FT / contract / fractional. También a consultoría de arquitectura cloud y auditorías de plataforma. USA, LATAM o EU time zones.',
     'home.closer_cta_primary': 'Contáctame',
     'home.closer_cta_secondary': 'O descarga el CV',
 
@@ -157,7 +157,7 @@ export const ui = {
     'home.section_stack': 'Stack del día a día',
     'home.see_all': 'Ver todos',
 
-    'footer.tagline': 'Hecho con Astro. Hospedado en Vercel.',
+    'footer.tagline': 'Hecho con Astro. Hospedado en Netlify.',
     'footer.last_updated': 'Última actualización',
 
     'page.about.title': 'Acerca',

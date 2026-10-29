@@ -1,0 +1,4 @@
+# Root → localized home. Real edge redirect (no client-side meta-refresh page).
+# Language-aware: Spanish browsers go to /es, everyone else to /en.
+/   /es   302   Language=es
+/   /en   302

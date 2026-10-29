@@ -1,9 +1,8 @@
 /* ============================================
    Juan Manuel Ahumada Vázquez — Portfolio
    "Engineer's Editorial" design system
+   Fonts self-hosted via Fontsource — imported in BaseLayout.astro
    ============================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* Light theme — paper + ink */
@@ -21,7 +20,7 @@
   --accent-ink: #8E3A1E;
 
   /* Typography */
-  --font-display: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Manrope', system-ui, sans-serif;
   --font-body:    'IBM Plex Sans', system-ui, sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
 
